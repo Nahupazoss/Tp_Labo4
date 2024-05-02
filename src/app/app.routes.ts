@@ -21,13 +21,12 @@ export const routes: Routes = [
         loadComponent : () => import("./component/quien-soy/quien-soy.component").then((m) => m.QuienSoyComponent)
     },
     {
+        path: '', redirectTo: 'login', pathMatch: 'full'
+    },
+    {
         path : "**",
         loadComponent : () => import("./component/error/error.component").then((m) => m.ErrorComponent)
     }, 
-    {
-        path : "",
-        loadComponent : () => import("./component/login/login.component").then((m) => m.LoginComponent)
-    },
   
     
 

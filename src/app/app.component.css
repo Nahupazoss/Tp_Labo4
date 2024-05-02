@@ -1,5 +1,5 @@
 nav {
-    background-color: #002ab6; /* Gris */
+  background-color: #007bff; /* Gris */
   }
   
   nav ul {
@@ -23,7 +23,7 @@ nav {
   }
   
   nav ul li a:hover {
-    background-color: #008cff; /* Cambia el tono al pararse sobre el enlace */
+    background-color: #0056b3; /* Cambia el tono al pararse sobre el enlace */
   }
 
   .fade-in-out {

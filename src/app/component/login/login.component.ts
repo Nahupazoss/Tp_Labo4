@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../services/user-service.service';
 import { CommonModule } from '@angular/common';
 import { UserCredential } from '@angular/fire/auth';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ import { UserCredential } from '@angular/fire/auth';
 export class LoginComponent
 {
   formLogin : FormGroup;
+  toastScv = inject(ToastrService);
 
   constructor(private userService:UserService,private router:Router)
   {
@@ -35,12 +37,17 @@ export class LoginComponent
       this.userService.login(this.formLogin.value)
       .then(response => {
         console.log(response);
+        this.toastScv.success("SUCCESS");
         this.router.navigate(["/home"]);
       })
-      .catch(error => console.log(error));
+      .catch((e:Error) => {
+        console.log(e);
+        this.toastScv.error("ERROR");
+      });
     }
     else
     {
+      this.toastScv.error("ERROR");
       console.log("error,campos invalaidos o incompletos");
     }
     
@@ -51,6 +58,7 @@ export class LoginComponent
     this.userService.loginHarcode("","")
     .then(response => {
       console.log(response);
+      this.toastScv.success("SUCCESS");
       this.router.navigate(["/home"]);
     })
     .catch(error => console.log(error));

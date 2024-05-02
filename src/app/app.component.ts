@@ -6,6 +6,9 @@ import { HomeComponent } from './component/home/home.component';
 import { QuienSoyComponent } from './component/quien-soy/quien-soy.component';
 import { ErrorComponent } from './component/error/error.component';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from './services/user-service.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +19,8 @@ import { Router } from '@angular/router';
     HomeComponent,
     RouterLink,
     QuienSoyComponent,
-    ErrorComponent
+    ErrorComponent,
+    CommonModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -27,7 +31,7 @@ export class AppComponent
     return outlet.isActivated ? outlet.activatedRoute : '';
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private userService : UserService) {}
 
   isActive(route: string): boolean {
     return this.router.isActive(route, true);
@@ -44,4 +48,15 @@ export class AppComponent
   {
     console.log("destroy");
   }
+
+  onClick()
+  {
+    this.userService.logout()
+    .then(()=>{
+      this.router.navigate(["/login"]);
+      console.log("primero debes loguearte");
+    })
+    .catch(error => console.log(error))
+  }
+
 }
