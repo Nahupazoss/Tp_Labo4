@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "tplab-8acb1"
+  },
+  "targets": {
+    "tplab-8acb1": {
+      "hosting": {
+        "tp-1": [
+          "tplab-8acb1"
+        ]
+      }
+    }
+  }
+}
