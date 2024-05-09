@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-registro',
   standalone: true,
@@ -30,8 +31,9 @@ export class RegistroComponent
     this.userService.register(this.formReg.value)
     .then(response =>{
       console.log(response)
-      this.toastScv.success("");
-      this.router.navigate(["/login"]);
+      this.toastScv.success("Registro con exito");
+      this.userService.login(this.formReg.value);
+      this.router.navigate(["/home"]);
     })
     .catch((e:Error) => {
       console.log(e);

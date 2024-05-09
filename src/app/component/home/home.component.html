@@ -9,17 +9,19 @@
 <body>
     <div class="container">
         <div class="background-image"></div>
+        <div class="email"  style="color: white;" *ngIf="user && user.email">{{ user.email }}</div>
         <div class="content">
+            <label></label>
             <div class="game">
-                <a href="juego1.html"><img src='../../../assets/ahorcado/ahorcado.png' alt="juego1"></a>
+                <a href="ahorcado"><img src='../../../assets/ahorcado/ahorcado.png' alt="juego1"></a>
                 <p>Ahorcado</p>
             </div>
             <div class="game">
-                <a href="juego2.html"><img src='../../../assets/preguntados/preguntados.png' alt="jeugo2"></a>
+                <a href="mayormenor"><img src='../../../assets/preguntados/preguntados.png' alt="jeugo2"></a>
                 <p>Preguntados</p>
             </div>
             <div class="game">
-                <a href="juego3.html"><img src='../../../assets/mayorMenor/mayoromenor.jpg' alt="juego3"></a>
+                <a href="mayormenor"><img src='../../../assets/mayorMenor/mayoromenor.jpg' alt="juego3"></a>
                 <p>¿Mayor o Menor?</p>
             </div>
         </div>

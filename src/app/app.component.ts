@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from './services/user-service.service';
 import { CommonModule } from '@angular/common';
+import { ChatComponent } from './component/chat/chat.component';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,9 @@ import { CommonModule } from '@angular/common';
     RouterLink,
     QuienSoyComponent,
     ErrorComponent,
-    CommonModule
+    CommonModule,
+    ChatComponent,
+    
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

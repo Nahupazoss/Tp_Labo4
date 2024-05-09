@@ -30,38 +30,36 @@ export class LoginComponent
       password:new FormControl()})
   }
 
-  onSubmit()
+  async onSubmit() 
   {
-    if(this.formLogin.valid)
+    if (this.formLogin.valid) 
     {
-      this.userService.login(this.formLogin.value)
-      .then(response => {
-        console.log(response);
-        this.toastScv.success("SUCCESS");
-        this.router.navigate(["/home"]);
-      })
-      .catch((e:Error) => {
-        console.log(e);
-        this.toastScv.error("ERROR");
-      });
-    }
-    else
+      try
+      {
+        const user = await this.userService.login(this.formLogin.value);
+        await this.userService.saveLoginInfo(this.formLogin.value.email);
+        this.toastScv.success("¡Inicio de sesión exitoso!");
+        this.router.navigate(['/home']);
+      } 
+      catch (error) 
+      {
+        this.toastScv.error("¡Error al iniciar sesión!");
+      }
+    } 
+    else 
     {
-      this.toastScv.error("ERROR");
-      console.log("error,campos invalaidos o incompletos");
+      this.toastScv.error("¡Por favor, complete todos los campos!");
     }
-    
   }
+ 
 
   onSubmitHarcode()
   {
-    this.userService.loginHarcode("","")
-    .then(response => {
-      console.log(response);
-      this.toastScv.success("SUCCESS");
-      this.router.navigate(["/home"]);
-    })
-    .catch(error => console.log(error));
+    this.formLogin.patchValue({
+
+      email : "luz@gmail.com",
+      password : "luz123",
+    });
   }
 
 }

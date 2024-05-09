@@ -1,0 +1,82 @@
+.chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+   background-image: url(../../../assets/fondoHome3.avif) ;
+}
+
+.chat-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.chat-body {
+    height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.chat-input {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.chat-input input[type="text"] {
+    width: calc(100% - 70px);
+    padding: 8px;
+    border: 1px solid #00158a;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.chat-input button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background-color: #0056b3;
+}
+
+.enviado{
+    display: block;
+    float: right;
+    background-color: #0056b3;
+    color: white;
+    min-width: 50.01%;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.recibido{
+    display: block;
+    float: left;
+    background-color: rgb(0, 8, 122);
+    color: white;
+    min-width: 50.01%;
+    border-radius: 10px;
+    text-align: left;
+}
+.info {
+    font-size: 12px;  
+    color: #ffffff; 
+  }
+
+  .info .email 
+  {
+    font-weight: bold; 
+  }
+  .mensaje-container {
+    margin-bottom: 10px; /* Agrega margen inferior entre cada mensaje */
+  }

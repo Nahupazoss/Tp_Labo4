@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Auth,GoogleAuthProvider,createUserWithEmailAndPassword, signInWithEmailAndPassword , signInWithPopup, signOut} from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Usuario } from '../interface/usuario';
+import { Observable } from 'rxjs';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private auth: Auth) 
+  constructor(private auth: Auth,private firestore : AngularFirestore,private authAngular:AngularFireAuth) 
   {
 
   }
@@ -30,13 +35,34 @@ export class UserService {
   {
     return signOut(this.auth);
   }
-
-  loginHarcode(email: string, password: string) 
-  {
-    const harcodedEmail = 'luz@gmail.com';
-    const harcodedPassword = 'luz123';
-    
-    return signInWithEmailAndPassword(this.auth, harcodedEmail, harcodedPassword);
-  }
   
+  async saveLoginInfo(email: string)
+  {
+    const loginInfo = {
+      email: email,
+      timestamp: new Date()
+    };
+
+    this.firestore.collection('logueados').add(loginInfo);
+  }
+
+  getUserEstado(): Observable<any> 
+  {
+    return this.authAngular.authState;
+  }
+  getUserInfo()
+  {
+    return this.authAngular.currentUser;
+  }
+
+  async saveMessage(usuario: Usuario) {
+    usuario.hora = Timestamp.now();
+    usuario.fehca = new Date(); // Agregar la fecha del día
+    await this.firestore.collection('chats').add(usuario);
+}
+  getMessages(): Observable<any[]>
+  {
+    return this.firestore.collection('chats', ref => ref.orderBy('hora')).valueChanges();
+  }
+
 }

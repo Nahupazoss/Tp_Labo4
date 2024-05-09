@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="image-container">
+      <img [src]="getImageUrl()" alt="Imagen del ahorcado">
+    </div>
+    <div class="word-display">
+      <p *ngFor="let letter of wordToGuess">{{ guessedLetters.includes(letter) ? letter : '_' }}</p>
+    </div>
+    <div class="letter-buttons">
+      <button *ngFor="let letter of alphabet" (click)="guess(letter)" [disabled]="guessedLetters.includes(letter) || gameOver">{{ letter }}</button>
+    </div>
+    <p *ngIf="gameOver">{{ gameResult }}</p>
+    <button *ngIf="gameOver" (click)="generateNewWord()">Generar nueva palabra</button>
+  </div>
+  

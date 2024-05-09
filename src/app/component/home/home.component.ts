@@ -3,6 +3,8 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { QuienSoyComponent } from '../quien-soy/quien-soy.component';
 import { LoginComponent } from '../login/login.component';
 import { UserService } from '../../services/user-service.service';
+import { CommonModule } from '@angular/common';
+import { ChatComponent } from '../chat/chat.component';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +13,18 @@ import { UserService } from '../../services/user-service.service';
     RouterLink,
     RouterOutlet,
     QuienSoyComponent,
-    LoginComponent
+    LoginComponent,
+    CommonModule,
+    ChatComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
 
-  constructor(private userService : UserService,private router:Router)
+  user : any;
+
+  constructor(private userService : UserService,private router:Router,)
   {
 
   }
@@ -28,7 +34,6 @@ export class HomeComponent {
     this.userService.logout()
     .then(()=>{
       this.router.navigate(["/login"]);
-      console.log("primero debes loguearte");
     })
     .catch(error => console.log(error))
   }
@@ -36,6 +41,10 @@ export class HomeComponent {
 
   ngOnInit()
   {
+    this.userService.getUserEstado().subscribe(usuario => {
+      this.user = usuario;
+      console.log(this.user); // Verifica que recibes el usuario correctamente
+    });
     console.log("home");
   }
 
