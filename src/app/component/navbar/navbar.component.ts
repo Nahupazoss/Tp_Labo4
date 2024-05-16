@@ -9,6 +9,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { QuienSoyComponent } from '../quien-soy/quien-soy.component';
 import { ErrorComponent } from '../error/error.component';
 import { UserService } from '../../services/user-service.service';
+import { User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -27,36 +28,16 @@ import { UserService } from '../../services/user-service.service';
 })
 export class NavbarComponent {
 
-  getRouterOutletState(outlet: RouterOutlet) {
-    return outlet.isActivated ? outlet.activatedRoute : '';
-  }
+  constructor(public authService: UserService) { }
 
-  constructor(private router: Router,private userService : UserService) {}
-
-  isActive(route: string): boolean {
-    return this.router.isActive(route, true);
-  }
-  
-  title = 'TP_1';
-
-  ngOnInit()
+  ngOnInit(): void 
   {
-    console.log("arranca");
+    this.authService.getUserEstado();
   }
 
-  ngOnDestroy()
+  onClick() 
   {
-    console.log("destroy");
-  }
-
-  onClick()
-  {
-    this.userService.logout()
-    .then(()=>{
-      this.router.navigate(["/login"]);
-      console.log("primero debes loguearte");
-    })
-    .catch();
+    this.authService.logout();
   }
 
 }

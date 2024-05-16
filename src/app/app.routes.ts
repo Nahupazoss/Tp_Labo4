@@ -1,17 +1,19 @@
 import { Routes } from '@angular/router';
-import{canActivate, redirectUnauthorizedTo} from "@angular/fire/auth-guard";
+import{canActivate, redirectUnauthorizedTo,redirectLoggedInTo} from "@angular/fire/auth-guard";
 import { ToastrService } from 'ngx-toastr';
 
 export const routes: Routes = [
       
     {
         path : "login",
-        loadComponent : () => import("./component/login/login.component").then((m) => m.LoginComponent)
+        loadComponent : () => import("./component/login/login.component").then((m) => m.LoginComponent).catch(),
+        ...canActivate(()=>redirectLoggedInTo(["/home"])),
     },
     {
         
         path : "registro",
-        loadComponent : () => import("./component/registro/registro.component").then((m) => m.RegistroComponent)
+        loadComponent : () => import("./component/registro/registro.component").then((m) => m.RegistroComponent).catch(),
+        ...canActivate(()=>redirectLoggedInTo(["/home"])),
     },
     {
         path : "home",
@@ -23,13 +25,8 @@ export const routes: Routes = [
         loadComponent : () => import("./component/quien-soy/quien-soy.component").then((m) => m.QuienSoyComponent)
     },
     {
-        path : "mayormenor",
-        loadComponent : () => import("./component/mayormenor/mayormenor.component").then((m) => m.MayormenorComponent).catch(),
-        ...canActivate(()=>redirectUnauthorizedTo(["/login"])),
-    },
-    {
-        path : "ahorcado",
-        loadComponent : () => import("./component/ahorcado/ahorcado.component").then((m) => m.AhorcadoComponent).catch(),
+        path : "games",
+        loadChildren : () => import("./component/games.routes").catch(),
         ...canActivate(()=>redirectUnauthorizedTo(["/login"])),
     },
     {

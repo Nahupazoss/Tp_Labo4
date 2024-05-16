@@ -1,0 +1,25 @@
+<div class="ruleta-container">
+    <div class="ruleta">
+      <!-- Representación visual de la ruleta -->
+      <p>Resultado: {{ resultado }}</p>
+    </div>
+  
+    <div class="apuestas">
+      <!-- Controles para realizar las apuestas -->
+      <button *ngFor="let numero of numeros" (click)="apostarNumero(numero)">
+        {{ numero }}
+      </button>
+      <button (click)="apostarColor('rojo')">Rojo</button>
+      <button (click)="apostarColor('negro')">Negro</button>
+    </div>
+  
+    <div class="botones">
+      <button (click)="reiniciarJuego()">Reiniciar</button>
+    </div>
+  
+    <div class="info">
+      <!-- Mostrar el score del jugador -->
+      <p>Score: {{ score }}</p>
+    </div>
+  </div>
+  

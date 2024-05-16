@@ -1,14 +1,18 @@
-<div class="chat-widget">
-    <div class="chat-header">Chat</div>
+<div class="chat-widget" [ngClass]="{'minimized': isMinimized}">
+    <div class="chat-header">
+        Chat
+        <button class="minimize-btn" (click)="minimizeChat()">Minimizar</button>
+    </div>
 
     <div class="chat-body" id="chat-body">
-        <div *ngFor="let n of mensajes" class="p-2 mensaje-container" [ngClass]="(usuarioLogueado.uid==n.uid)?'enviado' : 'enviado'">
+        <div *ngFor="let n of mensajes" class="p-2 mensaje-container" [ngClass]="(usuarioLogueado.uid == n.uid) ? 'recibido' : 'recibido'">
             {{n.mensaje}}
             <div class="info">
                 <span class="email">{{ n.email }} - {{ n.fecha | date:'shortDate' }}, {{ n.hora }}</span>
             </div>
         </div>
     </div>
+
     <form class="chat-input" (ngSubmit)="enviarMensaje()">
         <input type="text" class="form-control" placeholder="Ingrese su mensaje" [(ngModel)]="nuevoMensaje.mensaje" name="nuevoMensaje">
         <button type="submit">Enviar</button>

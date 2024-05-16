@@ -4,7 +4,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #f9f9f9; /* Color de fondo del contenedor principal */
-    border-radius: 10px; /* Borde redondeado del contenedor */
+    border-radius: 100px; /* Borde redondeado del contenedor */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave alrededor del contenedor */
     padding: 40px; /* Espaciado interno del contenedor */
     text-align: center; /* Alineación del texto en el centro */

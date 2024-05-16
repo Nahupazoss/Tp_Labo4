@@ -1,0 +1,21 @@
+<p>preguntados works!</p>
+
+<div *ngIf="pregunta">
+    <h1>{{ pregunta.question }}</h1>
+    <ul>
+      <li *ngFor="let respuesta of pregunta.incorrect_answers">
+        <label>
+          <input type="radio" name="respuesta" [(ngModel)]="respuestaSeleccionada" [value]="respuesta">
+          {{ respuesta }}
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="radio" name="respuesta" [(ngModel)]="respuestaSeleccionada" [value]="pregunta.correct_answer">
+          {{ pregunta.correct_answer }}
+        </label>
+      </li>
+    </ul>
+    <button (click)="verificarRespuesta()">Verificar respuesta</button>
+  </div>
+  

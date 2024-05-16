@@ -1,10 +1,14 @@
 <nav>
-    <ul>
-      <li *ngIf="!isActive('/home')"><a href="/login">Login</a></li>
-      <li *ngIf="!isActive('/home')"><a href="/registro">Registro</a></li>
-      <li><a href="/quiensoy">Quién Soy</a></li>
+  <ul>
+    <ng-container *ngIf="authService.getUserEstado() | async as user; else loggedOut">
       <li><a href="/home">Home</a></li>
-  
-      <li *ngIf="isActive('/home')"><a href="" (click)="onClick()">Logout</a></li>
-    </ul>
-  </nav>
+      <app-chat></app-chat>
+      <li class="logout-link"><a href="" (click)="onClick()">Logout</a></li>
+    </ng-container>
+    <ng-template #loggedOut>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/registro">Registro</a></li>
+      <li><a href="/quiensoy">Quién Soy</a></li>
+    </ng-template>
+  </ul>
+</nav>

@@ -1,0 +1,46 @@
+nav {
+    background-color: #007bff; /* Gris */
+    }
+    
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    
+    nav ul li {
+      float: left;
+    }
+    
+    nav ul li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      transition: background-color 0.3s; 
+    }
+    
+    nav ul li a:hover {
+      background-color: #0056b3; 
+    }
+  
+    .fade-in-out {
+      transition: opacity 01.20s ease;
+    }
+    
+    .fade-in-out.ng-enter,
+    .fade-in-out.ng-leave {
+      opacity: 0;
+    }
+    
+    .fade-in-out.ng-enter.ng-enter-active,
+    .fade-in-out.ng-leave {
+      opacity: 1;
+    }
+    .logout-link {
+        float: right;
+      }
+      
+    
