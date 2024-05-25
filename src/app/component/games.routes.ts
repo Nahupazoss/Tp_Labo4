@@ -24,6 +24,11 @@ export const routes: Routes = [
         loadComponent : () => import("./ruleta/ruleta.component").then((m) => m.RuletaComponent).catch(),
         ...canActivate(()=>redirectUnauthorizedTo(["/login"])),
     },
+    {
+        path : "buscaminas",
+        loadComponent : () => import("./buscaminas/buscaminas.component").then((m) => m.BuscaminasComponent).catch(),
+        ...canActivate(()=>redirectUnauthorizedTo(["/login"])),
+    },
     
 ];
 

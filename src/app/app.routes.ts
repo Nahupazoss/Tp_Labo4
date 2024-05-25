@@ -16,6 +16,11 @@ export const routes: Routes = [
         ...canActivate(()=>redirectLoggedInTo(["/home"])),
     },
     {
+        
+        path : "comojuego",
+        loadComponent : () => import("./component/como-juego/como-juego.component").then((m) => m.ComoJuegoComponent).catch(),
+    },
+    {
         path : "home",
         loadComponent : () => import("./component/home/home.component").then((m) => m.HomeComponent).catch(),
         ...canActivate(()=>redirectUnauthorizedTo(["/login"])),

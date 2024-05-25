@@ -9,12 +9,14 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
     provideToastr(),
     provideRouter(routes),
+    provideHttpClient(),
     importProvidersFrom(
       AngularFireModule.initializeApp({
         apiKey: "AIzaSyChzvJdNsnxgQOFPMpB1yP-TaILY5UIz2w",

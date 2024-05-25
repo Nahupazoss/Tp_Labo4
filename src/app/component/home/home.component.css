@@ -20,9 +20,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-image: url(../../../assets/fondoHome3.avif) ; /* Opacidad general */
-    border-radius: 100px; /* Ajusta según sea necesario */
-    padding: 70px; /* Espacio alrededor de los juegos */
+    background-color: transparent;
+    backdrop-filter: blur(100px);
+    padding: 20px;
+    border: 5px solid rgba(0, 119, 255, 0.5); 
+    border-radius: 20px; 
 }
 
 

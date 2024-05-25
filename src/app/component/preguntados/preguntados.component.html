@@ -1,21 +1,40 @@
-<p>preguntados works!</p>
-
-<div *ngIf="pregunta">
-    <h1>{{ pregunta.question }}</h1>
-    <ul>
-      <li *ngFor="let respuesta of pregunta.incorrect_answers">
-        <label>
-          <input type="radio" name="respuesta" [(ngModel)]="respuestaSeleccionada" [value]="respuesta">
-          {{ respuesta }}
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="radio" name="respuesta" [(ngModel)]="respuestaSeleccionada" [value]="pregunta.correct_answer">
-          {{ pregunta.correct_answer }}
-        </label>
-      </li>
-    </ul>
-    <button (click)="verificarRespuesta()">Verificar respuesta</button>
+<div class="page-container">
+  <div class="preguntados-container" *ngIf="questions.length > 0 && gameStatus === 'playing'">
+    <div class="status">
+      <p>Vidas: {{ lives }}</p>
+      <p>Preguntas Correctas: {{ correctAnswers }}</p>
+    </div>
+    <div class="question-card" *ngIf="currentQuestionIndex < questions.length">
+      <h2 class="question-title" [innerHTML]="questions[currentQuestionIndex].question"></h2>
+      <div class="answers">
+        <button
+          *ngFor="let answer of allAnswers[currentQuestionIndex]"
+          class="answer-btn"
+          [ngClass]="{
+            'correct': answer === questions[currentQuestionIndex].correct_answer && isAnswered,
+            'incorrect': answer !== questions[currentQuestionIndex].correct_answer && isAnswered && selectedAnswer === answer,
+            'disabled': isAnswered && selectedAnswer !== answer && answer !== questions[currentQuestionIndex].correct_answer
+          }"
+          (click)="selectAnswer(answer)"
+          [disabled]="isAnswered">
+          {{ answer }}
+        </button>
+      </div>
+    </div>
+    <div class="navigation" *ngIf="isAnswered">
+      <button (click)="nextQuestion()" [disabled]="currentQuestionIndex >= questions.length - 1">Siguiente Pregunta</button>
+    </div>
   </div>
-  
+  <div *ngIf="questions.length === 0">
+    <p>Cargando preguntas...</p>
+  </div>
+  <div class="game-status won" *ngIf="gameStatus === 'won'">
+    <p>¡Felicidades, has ganado!</p>
+    <button (click)="restartGame()">Nueva Partida</button>
+</div>
+<div class="game-status lost" *ngIf="gameStatus === 'lost'">
+    <p>Has perdido. ¡Inténtalo de nuevo!</p>
+    <button (click)="restartGame()">Nueva Partida</button>
+</div>
+</div>
+<app-chat></app-chat>

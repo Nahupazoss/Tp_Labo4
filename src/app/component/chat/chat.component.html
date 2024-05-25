@@ -1,11 +1,11 @@
 <div class="chat-widget" [ngClass]="{'minimized': isMinimized}">
-    <div class="chat-header">
+    <div class="chat-header" (click)="minimizeChat()">
         Chat
-        <button class="minimize-btn" (click)="minimizeChat()">Minimizar</button>
+        <button class="minimize-btn">-</button>
     </div>
 
     <div class="chat-body" id="chat-body">
-        <div *ngFor="let n of mensajes" class="p-2 mensaje-container" [ngClass]="(usuarioLogueado.uid == n.uid) ? 'recibido' : 'recibido'">
+        <div *ngFor="let n of mensajes" class="mensaje-container" [ngClass]="(usuarioLogueado.uid == n.uid) ? 'enviado' : 'recibido'">
             {{n.mensaje}}
             <div class="info">
                 <span class="email">{{ n.email }} - {{ n.fecha | date:'shortDate' }}, {{ n.hora }}</span>

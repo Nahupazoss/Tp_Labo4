@@ -6,15 +6,16 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #000000; /* Cambiamos el color de fondo a azul */
+    background-color: #000000; 
 }
 
 .container {
     width: 80%;
     max-width: 800px;
-    background-color: #3038a3;
+    background-color: #3f84eb;
     padding: 20px;
-    border-radius: 10px;
+    border: 5px solid rgb(0, 0, 0); 
+    border-radius: 20px; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 

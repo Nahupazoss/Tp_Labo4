@@ -1,14 +1,18 @@
-<div class="container">
-    <h1 style="color: white;">Mayor o Menor</h1>
-    <div class="card">
-      <p style="color: white;">¿La siguiente carta será mayor o menor que la actual?</p>
-      <p style="color: white;">Carta actual: <span>{{ currentCard }}</span></p>
-      <button class="btn" (click)="guess('mayor')">Mayor</button>
-      <button class="btn" (click)="guess('menor')">Menor</button>
-    </div>
-    <div id="result" style="color: white;">
-      <p *ngIf="resultMessage">{{ resultMessage }}</p>
-    </div>
-    <p style="color: blue;">Puntaje: {{ score }}</p> <!-- Cambiar el color del puntaje a azul -->
-  </div>
-  
+<div *ngIf="currentCard">
+  <h2 style="color: white;">Carta actual:</h2>
+  <img [src]="currentCard.image" alt="{{currentCard.value}} de {{currentCard.suit}}" />
+  <p style="color: white;">Valor: {{currentCard.value}}</p>
+  <p style="color: red;">Vidas: {{lives}}</p>
+</div>
+
+<div *ngIf="!result">
+  <button (click)="guessHigher()">Mayor</button>
+  <button (click)="guessLower()">Menor</button>
+</div>
+
+<div *ngIf="result">
+  <h3>{{resultMessage}}</h3>
+  <button style="color: white;" *ngIf="resultMessage === '¡Perdiste! Inténtalo de nuevo.'" (click)="newGame()">Generar nueva partida</button>
+  <button *ngIf="resultMessage === '¡Felicidades! ¡Ganaste!'" (click)="newGame()">Generar nueva partida</button>
+</div>
+<app-chat></app-chat>

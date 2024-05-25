@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class PreguntadosService {
 
-  private apiUrl = 'https://opentdb.com/api.php';
+  private apiUrl = 'https://opentdb.com/api.php?amount=10'; // Puedes personalizar los parámetros
 
   constructor(private http: HttpClient) { }
 
-  obtenerPregunta(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}?amount=1&lang=en`);
+  getQuestions(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
   }
 }

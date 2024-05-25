@@ -7,13 +7,25 @@ import { RegistroComponent } from './component/registro/registro.component';
 import { ChatComponent } from './component/chat/chat.component';
 import { HomeComponent } from './component/home/home.component';
 import { RouterOutlet } from '@angular/router';
+import { PreguntadosComponent } from './component/preguntados/preguntados.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ComoJuegoComponent } from './component/como-juego/como-juego.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule,FormsModule,NavbarComponent,LoginComponent,RegistroComponent,ChatComponent,HomeComponent,RouterOutlet
-
+  imports: [CommonModule,
+    FormsModule,
+    NavbarComponent,
+    LoginComponent,
+    RegistroComponent,
+    ChatComponent,
+    HomeComponent,
+    RouterOutlet,
+    PreguntadosComponent,
+    HttpClientModule,
+    ComoJuegoComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

@@ -1,0 +1,12 @@
+{
+    "/api": {
+      "target": "https://minesweeper.online",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+  }
+  

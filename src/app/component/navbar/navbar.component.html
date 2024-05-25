@@ -2,7 +2,8 @@
   <ul>
     <ng-container *ngIf="authService.getUserEstado() | async as user; else loggedOut">
       <li><a href="/home">Home</a></li>
-      <app-chat></app-chat>
+      <li><a href="/quiensoy">Quién Soy</a></li>
+      <li><a href="/comojuego">¿Como Jugar?</a></li>
       <li class="logout-link"><a href="" (click)="onClick()">Logout</a></li>
     </ng-container>
     <ng-template #loggedOut>

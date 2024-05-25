@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="board">
+    <div *ngFor="let row of cells; let i = index" class="row">
+      <div *ngFor="let cell of row; let j = index" 
+           class="cell" 
+           [ngClass]="{'revealed': cell.revealed, 'flagged': cell.status === CellStatus.Flagged}" 
+           (click)="cellClicked(i, j)" 
+           (contextmenu)="flagCell(i, j, $event)">
+        <span *ngIf="cell.revealed && cell.bomb" class="bomb">&#128163;</span>
+        <span *ngIf="cell.revealed && !cell.bomb">{{ calculateAdjacentBombs(i, j) }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="score" style="color: white;">Score: {{ score }}</div>
+  <div *ngIf="gameOver || win" class="message">
+    <span *ngIf="gameOver">Game Over!</span>
+    <span *ngIf="win">You Win!</span>
+    <button (click)="resetGame()">New Game</button>
+  </div>
+</div>
+<app-chat></app-chat>

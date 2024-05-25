@@ -10,6 +10,7 @@ import { QuienSoyComponent } from '../quien-soy/quien-soy.component';
 import { ErrorComponent } from '../error/error.component';
 import { UserService } from '../../services/user-service.service';
 import { User } from '@angular/fire/auth';
+import { ComoJuegoComponent } from '../como-juego/como-juego.component';
 
 @Component({
   selector: 'app-navbar',
@@ -22,7 +23,9 @@ import { User } from '@angular/fire/auth';
     QuienSoyComponent,
     ErrorComponent,
     CommonModule,
-    ChatComponent,],
+    ChatComponent,
+    ComoJuegoComponent,
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })

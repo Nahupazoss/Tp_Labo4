@@ -1,47 +1,97 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewEncapsulation } from '@angular/core';
+import { ChatComponent } from '../chat/chat.component';
+import { FormsModule } from '@angular/forms';
+import { MayormenorService } from '../../services/mayormenor.service';
 
 @Component({
   selector: 'app-mayormenor',
   standalone: true,
-  imports: [CommonModule,],
+  imports: [CommonModule,FormsModule,ChatComponent],
   templateUrl: './mayormenor.component.html',
   styleUrl: './mayormenor.component.css',
   encapsulation : ViewEncapsulation.None
 })
 export class MayormenorComponent 
 {
-  currentCard: string = "";
+  deckId: string = "";
+  currentCard: any;
   resultMessage: string = "";
   score: number = 0;
+  lives: number = 3; // Vidas
+  winStreak: number = 0; // Racha de aciertos consecutivos
+  result: boolean = false;
 
-  constructor() { }
+  constructor(private apiService: MayormenorService) {}
 
   ngOnInit(): void {
-    this.currentCard = this.generateCard();
+    this.startGame();
   }
 
-  generateCard(): string {
-    const suits = ['Corazones', 'Diamantes', 'Tréboles', 'Picas'];
-    const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-    const randomSuit = suits[Math.floor(Math.random() * suits.length)];
-    const randomValue = values[Math.floor(Math.random() * values.length)];
-    return randomValue + ' de ' + randomSuit;
+  startGame() {
+    this.result = false;
+    this.lives = 3;
+    this.apiService.getNewDeck().subscribe(data => {
+      this.deckId = data.deck_id;
+      this.drawCard();
+    });
   }
 
-  guess(choice: string): void {
-    const nextCard = this.generateCard();
-    this.resultMessage = `Carta siguiente: ${nextCard}`;
+  drawCard() {
+    this.apiService.drawCard(this.deckId).subscribe(data => {
+      this.currentCard = data.cards[0];
+    });
+  }
 
-    if ((choice === 'mayor' && nextCard > this.currentCard) || (choice === 'menor' && nextCard < this.currentCard)) {
-      this.resultMessage += ' ¡Correcto!';
-      this.score++; // Aumentamos el puntaje en 1
-    } else {
-      this.resultMessage += ' ¡Incorrecto!';
-      this.score = 0;
-    }
+  guessHigher() {
+    this.apiService.drawCard(this.deckId).subscribe(data => {
+      const nextCard = data.cards[0];
+      if (nextCard.value > this.currentCard.value) {
+        this.resultMessage = '¡Correcto!';
+        this.score++;
+        this.winStreak++;
+        if (this.winStreak >= 5) {
+          this.result = true;
+          this.resultMessage = '¡Felicidades! ¡Ganaste!';
+        }
+      } else {
+        this.resultMessage = '¡Incorrecto!';
+        this.lives--;
+        this.winStreak = 0;
+        if (this.lives === 0) {
+          this.result = true;
+          this.resultMessage = '¡Perdiste! Inténtalo de nuevo.';
+        }
+      }
+      this.currentCard = nextCard;
+    });
+  }
 
-    // Actualiza la carta actual
-    this.currentCard = nextCard;
+  guessLower() {
+    this.apiService.drawCard(this.deckId).subscribe(data => {
+      const nextCard = data.cards[0];
+      if (nextCard.value < this.currentCard.value) {
+        this.resultMessage = '¡Correcto!';
+        this.score++;
+        this.winStreak++;
+        if (this.winStreak >= 5) {
+          this.result = true;
+          this.resultMessage = '¡Felicidades! ¡Ganaste!';
+        }
+      } else {
+        this.resultMessage = '¡Incorrecto!';
+        this.lives--;
+        this.winStreak = 0;
+        if (this.lives === 0) {
+          this.result = true;
+          this.resultMessage = '¡Perdiste! Inténtalo de nuevo.';
+        }
+      }
+      this.currentCard = nextCard;
+    });
+  }
+
+  newGame() {
+    this.startGame();
   }
 }
