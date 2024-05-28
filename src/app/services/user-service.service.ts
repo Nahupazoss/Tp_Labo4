@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Auth,GoogleAuthProvider,createUserWithEmailAndPassword, signInWithEmailAndPassword , signInWithPopup, signOut} from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -10,6 +10,7 @@ import { Timestamp } from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class UserService {
+
 
   constructor(private auth: Auth,private firestore : AngularFirestore,private authAngular:AngularFireAuth) 
   {
@@ -57,7 +58,7 @@ export class UserService {
 
   async saveMessage(usuario: Usuario) {
     usuario.hora = Timestamp.now();
-    usuario.fehca = new Date(); // Agregar la fecha del día
+    usuario.fehca = new Date(); 
     await this.firestore.collection('chats').add(usuario);
 }
   getMessages(): Observable<any[]>

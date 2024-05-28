@@ -10,7 +10,7 @@ import { Timestamp } from 'firebase/firestore';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']  // Ajuste aquí: styleUrls, no styleUrl
+  styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
   usuarioLogueado: any;
@@ -35,26 +35,34 @@ export class ChatComponent implements OnInit {
     return formatDate(date, 'hh:mm:ss a', 'en-US');
   }
 
-  enviarMensaje() {
-    this.authService.getUserInfo().then(user => {
-      if (user) {
-        const mensajeInfo: Usuario = {
+  enviarMensaje() 
+  {
+    this.authService.getUserInfo().then(user => 
+    {
+      if (user) 
+        {
+        const mensajeInfo: Usuario = 
+        {
           uid: user.uid,
           email: user.email,
           mensaje: this.nuevoMensaje.mensaje,
           hora: Timestamp.now(),
         };
+        
         this.nuevoMensaje = mensajeInfo;
         this.authService.saveMessage(this.nuevoMensaje);
         this.nuevoMensaje.mensaje = "";
         console.log("mensaje exitoso");
-      } else {
+      } 
+      else 
+      {
         console.log("usuario no encontrado");
       }
     }).catch(error => console.error(error));
   }
 
-  minimizeChat() {
+  minimizeChat() 
+  {
     this.isMinimized = !this.isMinimized;
   }
 }

@@ -12,7 +12,8 @@ import { ChatComponent } from '../chat/chat.component';
   templateUrl: './preguntados.component.html',
   styleUrl: './preguntados.component.css'
 })
-export class PreguntadosComponent {
+export class PreguntadosComponent 
+{
   questions: any[] = [];
   currentQuestionIndex: number = 0;
   isAnswered: boolean = false;
@@ -22,13 +23,18 @@ export class PreguntadosComponent {
   gameStatus: 'playing' | 'won' | 'lost' = 'playing';
   allAnswers: string[][] = [];
 
-  constructor(private preguntadosService: PreguntadosService) { }
+  constructor(private preguntadosService: PreguntadosService) 
+  {
 
-  ngOnInit(): void {
+  }
+
+  ngOnInit(): void 
+  {
     this.loadQuestions();
   }
 
-  loadQuestions(): void {
+  loadQuestions(): void 
+  {
     this.preguntadosService.getQuestions().subscribe(
       data => {
         this.questions = data.results;
@@ -42,14 +48,17 @@ export class PreguntadosComponent {
     );
   }
 
-  getAllAnswers(question: any): string[] {
+  getAllAnswers(question: any): string[] 
+  {
     const answers = [...question.incorrect_answers];
     const randomIndex = Math.floor(Math.random() * (answers.length + 1));
     answers.splice(randomIndex, 0, question.correct_answer);
+
     return answers;
   }
 
-  selectAnswer(answer: string): void {
+  selectAnswer(answer: string): void 
+  {
     if (this.isAnswered) return;
 
     this.isAnswered = true;
@@ -57,26 +66,35 @@ export class PreguntadosComponent {
 
     if (answer === this.questions[this.currentQuestionIndex].correct_answer) {
       this.correctAnswers++;
-      if (this.correctAnswers >= 5) {
+      if (this.correctAnswers >= 5) 
+      {
         this.gameStatus = 'won';
       }
-    } else {
+
+    } 
+    else
+    {
       this.lives--;
-      if (this.lives <= 0) {
+
+      if (this.lives <= 0) 
+      {
         this.gameStatus = 'lost';
       }
     }
   }
 
-  nextQuestion(): void {
-    if (this.currentQuestionIndex < this.questions.length - 1) {
+  nextQuestion(): void 
+  {
+    if (this.currentQuestionIndex < this.questions.length - 1) 
+    {
       this.currentQuestionIndex++;
       this.isAnswered = false;
       this.selectedAnswer = null;
     }
   }
 
-  restartGame(): void {
+  restartGame(): void 
+  {
     this.currentQuestionIndex = 0;
     this.isAnswered = false;
     this.selectedAnswer = null;

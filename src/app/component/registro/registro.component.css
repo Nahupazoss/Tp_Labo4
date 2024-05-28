@@ -9,17 +9,17 @@ body {
 }
 
 .container {
-    background-color: transparent; /* Fondo semi-transparente */
+    background-color: transparent; 
     backdrop-filter: blur(20px);
     padding: 20px;
     border: 5px solid rgba(0, 119, 255, 0.5); 
     border-radius: 20px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra */
-    text-align: center; /* Alineación del contenido al centro */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+    text-align: center; 
 }
 
 h2 {
-    margin-bottom: 20px; /* Espaciado inferior */
+    margin-bottom: 20px;
 }
 
 input[type="text"],
@@ -30,7 +30,7 @@ button {
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+    box-sizing: border-box; 
 }
 
 button {
@@ -46,7 +46,7 @@ button:hover {
 }
 
 .register-link {
-    margin-top: 20px; /* Espaciado superior */
+    margin-top: 20px; 
 }
 
 .register-link a {

@@ -6,7 +6,7 @@
            [ngClass]="{'revealed': cell.revealed, 'flagged': cell.status === CellStatus.Flagged}" 
            (click)="cellClicked(i, j)" 
            (contextmenu)="flagCell(i, j, $event)">
-        <span *ngIf="cell.revealed && cell.bomb" class="bomb">&#128163;</span>
+        <span *ngIf="cell.revealed && cell.bomb">💣</span>
         <span *ngIf="cell.revealed && !cell.bomb">{{ calculateAdjacentBombs(i, j) }}</span>
       </div>
     </div>

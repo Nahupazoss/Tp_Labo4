@@ -3,11 +3,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #f9f9f9; /* Color de fondo del contenedor principal */
-    border-radius: 100px; /* Borde redondeado del contenedor */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave alrededor del contenedor */
-    padding: 40px; /* Espaciado interno del contenedor */
-    text-align: center; /* Alineación del texto en el centro */
+    background-color: #f9f9f9; 
+    border-radius: 100px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    padding: 40px; 
+    text-align: center; 
 }
 
 .image-container {
@@ -29,8 +29,8 @@
     padding: 10px 20px;
     font-size: 18px;
     cursor: pointer;
-    background-color: #007bff; /* Color de fondo de los botones */
-    color: #fff; /* Color del texto de los botones */
+    background-color: #007bff; 
+    color: #fff; 
     border: none;
     border-radius: 5px;
 }
@@ -41,8 +41,8 @@
 }
 
 .title {
-    color: #007bff; /* Color del título */
-    font-size: 32px; /* Tamaño de fuente del título */
+    color: #007bff; 
+    font-size: 32px; 
 }
 
 .button {
@@ -54,5 +54,5 @@
 }
 
 .button:hover {
-    background-color: #0056b3; /* Color de fondo al pasar el ratón sobre el botón */
+    background-color: #0056b3; 
 }

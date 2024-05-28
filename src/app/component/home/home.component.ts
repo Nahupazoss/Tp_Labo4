@@ -43,7 +43,7 @@ export class HomeComponent {
   {
     this.userService.getUserEstado().subscribe(usuario => {
       this.user = usuario;
-      console.log(this.user); // Verifica que recibes el usuario correctamente
+      console.log(this.user); 
     });
     console.log("home");
   }
